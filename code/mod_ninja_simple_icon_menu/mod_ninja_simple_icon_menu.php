@@ -130,7 +130,7 @@ defined('_JEXEC') or die('Direct Access to this location is not allowed.');
   // We say less than 8 and start at 0 because that is how php handles arrays, the first element has an index of 0
   // We have 10 elements but one is in index 0 which means we stop the loop when the index is above 9.
   // Also this menu visible count variable is used to tell us how many items we have so we can size the invisible box accordingly
-  for ($i=0; $i<10; $i++){
+  for ($i=0; $i<20; $i++){
       // Menu params[i][0] = the first element (menu status) in the array record which matches the index i
       // Check that our status == 1 (visible) or == 2 (registered only) and we are not a guest. || = OR , && = AND
       // Also, for all the ones that are status 2 and we are registered, change them to status 1
