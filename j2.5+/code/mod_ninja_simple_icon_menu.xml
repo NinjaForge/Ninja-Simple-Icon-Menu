@@ -1,0 +1,378 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension 
+	type="module" 
+	version="3.0" 
+	method="upgrade" 
+	client="site">
+	<name>mod_ninja_simple_icon_menu</name>
+	<author>Richie Mortimer</author>
+	<creationDate>September, 2010</creationDate>
+	<copyright>(C) Richie Mortimer, ninjaforge.com</copyright>
+	<license>PHP - http://www.gnu.org/copyleft/gpl.html GNU/GPL, CSS  : http://creativecommons.org/licenses/by-nc-sa/3.0/</license>
+	<authorEmail>support@ninjaforge.com</authorEmail>
+	<authorUrl>http://ninjaforge.com</authorUrl>
+	<version>1.9.0</version>
+	<description>NINJASIMPLEICONS</description>
+
+	<files>
+		<filename module="mod_ninja_simple_icon_menu">mod_ninja_simple_icon_menu.php</filename>
+		<filename>index.html</filename>
+	</files>
+  
+	<media destination="mod_ninja_simple_icon_menu" folder="media">
+		<folder>css</folder>
+		<folder>images</folder>
+		<file>index.html</file>
+		<file>logo.jpg</file>
+	</media>
+  
+  
+	<languages folder="language">
+		<language tag="en-GB">en-GB.mod_ninja_simple_icon_menu.ini</language>
+		<language tag="en-GB">en-GB.mod_ninja_simple_icon_menu.sys.ini</language>
+	</languages>
+
+	
+   <config>
+	   	<fields name="params">
+	   		<fieldset name="basic">
+	      <field name="moduleclass_sfx" type="text" default="" label="Module Class Suffix" description="A suffix to be applied to the css class of the module (table.moduletable), this allows individual module styling." />
+	      <field name="icon_container_margin_top" type="text" default="0px" label="Icon Container Top Margin" description="Which margin do you need? Example: -40px or 40px etc." />
+	      <field name="icon_titles" type="radio" default="1" label="Icon Titles" description="Would you like to show titles?">
+	      			<option value="0">Hide</option>
+	      			<option value="1">Show</option>
+	      		</field>
+	      <field name="icon_title_color" type="text" default="" label="Icon Title Color" description="Which color should the icon titles have? If you leave the field empty the defined link color from your template is used. Must be valid: #ffffff or white etc " />
+	      <field name="icon_title_fontsize" type="text" default="" label="Icon Title Fontsize" description="Which fontsize should the icon titles have? If you leave the field empty the defined link size from your template is used. Must be valid: 12px etc " />
+	      <field name="icon_orientation" type="list" default="0" label="Icon List Orientation" description="which way would you like the list to go?.">
+	      			<option value="0">Horizontal - icons above titles</option>
+	      			<option value="1">Horizontal - icons below titles</option>
+	      			<option value="2">Vertical - icons above titles</option>
+	      			<option value="3">Vertical - icons to left of titles</option>
+	      			<option value="4">Vertical - icons to right of titles</option>
+	      		</field>
+	      <field name="incCSS" type="radio" default="1" label="Include CSS" description="Would you like to include the CSS file for this module." >
+	      			<option value="0">Disable</option>
+	      			<option value="1">Enable</option></field>
+	      <field name="icon_height" type="text" default="64" label="Icon Height" description="Enter the height of the icon without the unit eg: 40 instead of 40px" />
+	      <field name="icon_width" type="text" default="64" label="Icon Width" description="Enter the width of the icon without the unit eg: 40 instead of 40px" />
+	  
+	  		<field name="spacer" hr="true" type="spacer" default="" label="Icon 1 Params" description=""></field>
+	  		<field name="icon1_status" type="radio" default="1" label="Icon 1 Status" description="Registered+ this will only show the menu item to registered users and above.">
+	  			<option value="0">Disable</option>
+	  			<option value="1">Enable</option>
+	  			<option value="2">Only Registered+</option>
+	  		</field>
+	  		<field name="icon1_img" type="imagelist" directory="/media/mod_ninja_simple_icon_menu/images" default="icons.png" label="Icon 1 Image" description="choose the icon you want to use" />
+	  		<field name="icon1_target" type="list" default="_self" label="Icon 1 Target" description="Choose whether the icon click will open a new window/tab or not">
+	  			<option value="_self">_self (same window)</option>
+	  			<option value="_blank">_blank (new window)</option>
+	  		</field>
+	  		<field name="icon1_title" type="text" label="Icon 1 Title" description="type in the title of your icon" />
+	  		<field name="icon1_link" type="text" label="Icon 1 URL" description="Enter the URL for this menu item. (Eg. http://ninjaforge.com )" />
+	  		<field name="icon1_alt" type="text" label="Icon 1 Alt" description="The Alt text for the icon image. This is important for accessibility and HTML validation." />
+	  		
+	  		<field name="spacer2" hr="true" type="spacer" default="" label="Icon 2 Params" description=""></field>
+	  		<field name="icon2_status" type="radio" default="1" label="Icon 2 Status" description="Registered+ this will only show the menu item to registered users and above.">
+	  			<option value="0">Disable</option>
+	  			<option value="1">Enable</option>
+	  			<option value="2">Only Registered+</option>
+	  		</field>
+	  		<field name="icon2_img" type="imagelist" directory="/media/mod_ninja_simple_icon_menu/images" default="community.png" label="Icon 2 Image" description="choose the icon you want to use" />
+	  		<field name="icon2_target" type="list" default="_self" label="Icon 2 Target" description="Choose whether the icon click will open a new window/tab or not">
+	  			<option value="_self">_self (same window)</option>
+	  			<option value="_blank">_blank (new window)</option>
+	  		</field>
+	  		<field name="icon2_title" type="text" label="Icon 2 Title" description="type in the title of your icon" />
+	  		<field name="icon2_link" type="text" label="Icon 2 URL" description="Enter the URL for this menu item. (Eg. http://ninjaforge.com )" />
+	  		<field name="icon2_alt" type="text" label="Icon 2 Alt" description="The Alt text for the icon image. This is important for accessibility and HTML validation." />
+	  		
+	  		<field name="spacer3" hr="true" type="spacer" default="" label="Icon 3 Params" description=""></field>
+	  		<field name="icon3_status" type="radio" default="1" label="Icon 3 Status" description="Registered+ this will only show the menu item to registered users and above.">
+	  			<option value="0">Disable</option>
+	  			<option value="1">Enable</option>
+	  			<option value="2">Only Registered+</option>
+	  		</field>
+	  		<field name="icon3_img" type="imagelist" directory="/media/mod_ninja_simple_icon_menu/images" default="photos.png" label="Icon 3 Image" description="choose the icon you want to use" />
+	  		<field name="icon3_target" type="list" default="_self" label="Icon 3 Target" description="Choose whether the icon click will open a new window/tab or not">
+	  			<option value="_self">_self (same window)</option>
+	  			<option value="_blank">_blank (new window)</option>
+	  		</field>
+	  		<field name="icon3_title" type="text" label="Icon 3 Title" description="type in the title of your icon" />
+	  		<field name="icon3_link" type="text" label="Icon 3 URL" description="Enter the URL for this menu item. (Eg. http://ninjaforge.com )" />
+	  		<field name="icon3_alt" type="text" label="Icon 3 Alt" description="The Alt text for the icon image. This is important for accessibility and HTML validation." />
+	  		
+	  		<field name="spacer4" hr="true" type="spacer" default="" label="Icon 4 Params" description=""></field>
+	  		<field name="icon4_status" type="radio" default="1" label="Icon 4 Status" description="Registered+ this will only show the menu item to registered users and above.">
+	  			<option value="0">Disable</option>
+	  			<option value="1">Enable</option>
+	  			<option value="2">Only Registered+</option>
+	  		</field>
+	  		<field name="icon4_img" type="imagelist" directory="/media/mod_ninja_simple_icon_menu/images" default="speaker.png" label="Icon 4 Image" description="choose the icon you want to use" />
+	  		<field name="icon4_target" type="list" default="_self" label="Icon 4 Target" description="Choose whether the icon click will open a new window/tab or not">
+	  			<option value="_self">_self (same window)</option>
+	  			<option value="_blank">_blank (new window)</option>
+	  		</field>
+	  		<field name="icon4_title" type="text" label="Icon 4 Title" description="Type in the title of your icon" />
+	  		<field name="icon4_link" type="text" label="Icon 4 URL" description="Enter the URL for this menu item. (Eg. http://ninjaforge.com )" />
+	  		<field name="icon4_alt" type="text" label="Icon 4 Alt" description="The Alt text for the icon image. This is important for accessibility and HTML validation." />
+	  		
+	  		<field name="spacer5" hr="true" type="spacer" default="" label="Icon 5 Params" description=""></field>
+	  		<field name="icon5_status" type="radio" default="1" label="Icon 5 Status" description="Registered+ this will only show the menu item to registered users and above.">
+	  			<option value="0">Disable</option>
+	  			<option value="1">Enable</option>
+	  			<option value="2">Only Registered+</option>
+	  		</field>
+	  		<field name="icon5_img" type="imagelist" directory="/media/mod_ninja_simple_icon_menu/images" default="support.png" label="Icon 5 Image" description="choose the icon you want to use" />
+	  		<field name="icon5_target" type="list" default="_self" label="Icon 5 Target" description="Choose whether the icon click will open a new window/tab or not">
+	  			<option value="_self">_self (same window)</option>
+	  			<option value="_blank">_blank (new window)</option>
+	  		</field>
+	  		<field name="icon5_title" type="text" label="Icon 5 Title" description="type in the title of your icon" />
+	  		<field name="icon5_link" type="text" label="Icon 5 URL" description="Enter the URL for this menu item. (Eg. http://ninjaforge.com )" />
+	  		<field name="icon5_alt" type="text" label="Icon 5 Alt" description="The Alt text for the icon image. This is important for accessibility and HTML validation." />
+	  		
+	  		<field name="spacer6" hr="true" type="spacer" default="" label="Icon 6 Params" description=""></field>
+	  		<field name="icon6_status" type="radio" default="0" label="Icon 6 Status" description="Registered+ this will only show the menu item to registered users and above.">
+	  			<option value="0">Disable</option>
+	  			<option value="1">Enable</option>
+	  			<option value="2">Only Registered+</option>
+	  		</field>
+	  		<field name="icon6_img" type="imagelist" directory="/media/mod_ninja_simple_icon_menu/images" default="image6.png" label="Icon 6 Image" description="choose the icon you want to use" />
+	  		<field name="icon6_target" type="list" default="_self" label="Icon 6 Target" description="Choose whether the icon click will open a new window/tab or not">
+	  			<option value="_self">_self (same window)</option>
+	  			<option value="_blank">_blank (new window)</option>
+	  		</field>
+	  		<field name="icon6_title" type="text" label="Icon 6 Title" description="type in the title of your icon" />
+	  		<field name="icon6_link" type="text" label="Icon 6 URL" description="Enter the URL for this menu item. (Eg. http://ninjaforge.com )" />
+	  		<field name="icon6_alt" type="text" label="Icon 6 Alt" description="The Alt text for the icon image. This is important for accessibility and HTML validation." />
+	  		
+	  		
+	  		
+	  		<field name="spacer7" hr="true" type="spacer" default="" label="Icon 7 Params" description=""></field>
+	  		<field name="icon7_status" type="radio" default="0" label="Icon 7 Status" description="Registered+ this will only show the menu item to registered users and above.">
+	  			<option value="0">Disable</option>
+	  			<option value="1">Enable</option>
+	  			<option value="2">Only Registered+</option>
+	  		</field>
+	  		<field name="icon7_img" type="imagelist" directory="/media/mod_ninja_simple_icon_menu/images" default="image7.png" label="Icon 7 Image" description="choose the icon you want to use" />
+	  		<field name="icon7_target" type="list" default="_self" label="Icon 7 Target" description="Choose whether the icon click will open a new window/tab or not">
+	  			<option value="_self">_self (same window)</option>
+	  			<option value="_blank">_blank (new window)</option>
+	  		</field>
+	  		<field name="icon7_title" type="text" label="Icon 7 Title" description="type in the title of your icon" />
+	  		<field name="icon7_link" type="text" label="Icon 7 URL" description="Enter the URL for this menu item. (Eg. http://ninjaforge.com )" />
+	  		<field name="icon7_alt" type="text" label="Icon 7 Alt" description="The Alt text for the icon image. This is important for accessibility and HTML validation." />
+	  		
+	  		
+	  		
+	  		<field name="spacer8" hr="true" type="spacer" default="" label="Icon 8 Params" description=""></field>
+	  		<field name="icon8_status" type="radio" default="0" label="Icon 8 Status" description="Registered+ this will only show the menu item to registered users and above.">
+	  			<option value="0">Disable</option>
+	  			<option value="1">Enable</option>
+	  			<option value="2">Only Registered+</option>
+	  		</field>
+	  		<field name="icon8_img" type="imagelist" directory="/media/mod_ninja_simple_icon_menu/images" default="image8.png" label="Icon 8 Image" description="choose the icon you want to use" />
+	  		<field name="icon8_target" type="list" default="_self" label="Icon 8 Target" description="Choose whether the icon click will open a new window/tab or not">
+	  			<option value="_self">_self (same window)</option>
+	  			<option value="_blank">_blank (new window)</option>
+	  		</field>
+	  		<field name="icon8_title" type="text" label="Icon 8 Title" description="type in the title of your icon" />
+	  		<field name="icon8_link" type="text" label="Icon 8 URL" description="Enter the URL for this menu item. (Eg. http://ninjaforge.com )" />
+	  		<field name="icon8_alt" type="text" label="Icon 8 Alt" description="The Alt text for the icon image. This is important for accessibility and HTML validation." />
+	  		
+	  		
+	  		<field name="spacer9" hr="true" type="spacer" default="" label="Icon 9 Params" description=""></field>
+	  		<field name="icon9_status" type="radio" default="0" label="Icon 9 Status" description="Registered+ this will only show the menu item to registered users and above.">
+	  			<option value="0">Disable</option>
+	  			<option value="1">Enable</option>
+	  			<option value="2">Only Registered+</option>
+	  		</field>
+	  		<field name="icon9_img" type="imagelist" directory="/media/mod_ninja_simple_icon_menu/images" default="image9.png" label="Icon 9 Image" description="choose the icon you want to use" />
+	  		<field name="icon9_target" type="list" default="_self" label="Icon 9 Target" description="Choose whether the icon click will open a new window/tab or not">
+	  			<option value="_self">_self (same window)</option>
+	  			<option value="_blank">_blank (new window)</option>
+	  		</field>
+	  		<field name="icon9_title" type="text" label="Icon 9 Title" description="type in the title of your icon" />
+	  		<field name="icon9_link" type="text" label="Icon 9 URL" description="Enter the URL for this menu item. (Eg. http://ninjaforge.com )" />
+	  		<field name="icon9_alt" type="text" label="Icon 9 Alt" description="The Alt text for the icon image. This is important for accessibility and HTML validation." />
+	  		
+	  		
+	  		<field name="spacer10" hr="true" type="spacer" default="" label="Icon 10 Params" description=""></field>
+	  		<field name="icon10_status" type="radio" default="0" label="Icon 10 Status" description="Registered+ this will only show the menu item to registered users and above.">
+	  			<option value="0">Disable</option>
+	  			<option value="1">Enable</option>
+	  			<option value="2">Only Registered+</option>
+	  		</field>
+	  		<field name="icon10_img" type="imagelist" directory="/media/mod_ninja_simple_icon_menu/images" default="image10.png" label="Icon 10 Image" description="choose the icon you want to use" />
+	  		<field name="icon10_target" type="list" default="_self" label="Icon 10 Target" description="Choose whether the icon click will open a new window/tab or not">
+	  			<option value="_self">_self (same window)</option>
+	  			<option value="_blank">_blank (new window)</option>
+	  		</field>
+	  		<field name="icon10_title" type="text" label="Icon 10 Title" description="type in the title of your icon" />
+	  		<field name="icon10_link" type="text" label="Icon 10 URL" description="Enter the URL for this menu item. (Eg. http://ninjaforge.com )" />
+	  		<field name="icon10_alt" type="text" label="Icon 10 Alt" description="The Alt text for the icon image. This is important for accessibility and HTML validation." />
+	  	  
+	      
+	      <field name="spacer11" hr="true" type="spacer" default="" label="Icon 11 Params" description=""></field>
+	  		<field name="icon11_status" type="radio" default="0" label="Icon 11 Status" description="Registered+ this will only show the menu item to registered users and above.">
+	  			<option value="0">Disable</option>
+	  			<option value="1">Enable</option>
+	  			<option value="2">Only Registered+</option>
+	  		</field>
+	  		<field name="icon11_img" type="imagelist" directory="/media/mod_ninja_simple_icon_menu/images" default="image11.png" label="Icon 11 Image" description="choose the icon you want to use" />
+	  		<field name="icon11_target" type="list" default="_self" label="Icon 11 Target" description="Choose whether the icon click will open a new window/tab or not">
+	  			<option value="_self">_self (same window)</option>
+	  			<option value="_blank">_blank (new window)</option>
+	  		</field>
+	  		<field name="icon11_title" type="text" label="Icon 11 Title" description="type in the title of your icon" />
+	  		<field name="icon11_link" type="text" label="Icon 11 URL" description="Enter the URL for this menu item. (Eg. http://ninjaforge.com )" />
+	  		<field name="icon11_alt" type="text" label="Icon 11 Alt" description="The Alt text for the icon image. This is important for accessibility and HTML validation." />
+	  		
+	  		
+	  		<field name="spacer12" hr="true" type="spacer" default="" label="Icon 12 Params" description=""></field>
+	  		<field name="icon12_status" type="radio" default="0" label="Icon 12 Status" description="Registered+ this will only show the menu item to registered users and above.">
+	  			<option value="0">Disable</option>
+	  			<option value="1">Enable</option>
+	  			<option value="2">Only Registered+</option>
+	  		</field>
+	  		<field name="icon12_img" type="imagelist" directory="/media/mod_ninja_simple_icon_menu/images" default="image12.png" label="Icon 12 Image" description="choose the icon you want to use" />
+	  		<field name="icon12_target" type="list" default="_self" label="Icon 12 Target" description="Choose whether the icon click will open a new window/tab or not">
+	  			<option value="_self">_self (same window)</option>
+	  			<option value="_blank">_blank (new window)</option>
+	  		</field>
+	  		<field name="icon12_title" type="text" label="Icon 12 Title" description="type in the title of your icon" />
+	  		<field name="icon12_link" type="text" label="Icon 12 URL" description="Enter the URL for this menu item. (Eg. http://ninjaforge.com )" />
+	  		<field name="icon12_alt" type="text" label="Icon 12 Alt" description="The Alt text for the icon image. This is important for accessibility and HTML validation." />
+	      
+	      
+	      <field name="spacer13" hr="true" type="spacer" default="" label="Icon 13 Params" description=""></field>
+	  		<field name="icon13_status" type="radio" default="0" label="Icon 13 Status" description="Registered+ this will only show the menu item to registered users and above.">
+	  			<option value="0">Disable</option>
+	  			<option value="1">Enable</option>
+	  			<option value="2">Only Registered+</option>
+	  		</field>
+	  		<field name="icon13_img" type="imagelist" directory="/media/mod_ninja_simple_icon_menu/images" default="image13.png" label="Icon 13 Image" description="choose the icon you want to use" />
+	  		<field name="icon13_target" type="list" default="_self" label="Icon 13 Target" description="Choose whether the icon click will open a new window/tab or not">
+	  			<option value="_self">_self (same window)</option>
+	  			<option value="_blank">_blank (new window)</option>
+	  		</field>
+	  		<field name="icon13_title" type="text" label="Icon 13 Title" description="type in the title of your icon" />
+	  		<field name="icon13_link" type="text" label="Icon 13 URL" description="Enter the URL for this menu item. (Eg. http://ninjaforge.com )" />
+	  		<field name="icon13_alt" type="text" label="Icon 13 Alt" description="The Alt text for the icon image. This is important for accessibility and HTML validation." />
+	  		
+	  		
+	  		<field name="spacer14" hr="true" type="spacer" default="" label="Icon 14 Params" description=""></field>
+	  		<field name="icon14_status" type="radio" default="0" label="Icon 14 Status" description="Registered+ this will only show the menu item to registered users and above.">
+	  			<option value="0">Disable</option>
+	  			<option value="1">Enable</option>
+	  			<option value="2">Only Registered+</option>
+	  		</field>
+	  		<field name="icon14_img" type="imagelist" directory="/media/mod_ninja_simple_icon_menu/images" default="image14.png" label="Icon 14 Image" description="choose the icon you want to use" />
+	  		<field name="icon14_target" type="list" default="_self" label="Icon 14 Target" description="Choose whether the icon click will open a new window/tab or not">
+	  			<option value="_self">_self (same window)</option>
+	  			<option value="_blank">_blank (new window)</option>
+	  		</field>
+	  		<field name="icon14_title" type="text" label="Icon 14 Title" description="type in the title of your icon" />
+	  		<field name="icon14_link" type="text" label="Icon 14 URL" description="Enter the URL for this menu item. (Eg. http://ninjaforge.com )" />
+	  		<field name="icon14_alt" type="text" label="Icon 14 Alt" description="The Alt text for the icon image. This is important for accessibility and HTML validation." />
+	  		
+	  		
+	  		<field name="spacer15" hr="true" type="spacer" default="" label="Icon 15 Params" description=""></field>
+	  		<field name="icon15_status" type="radio" default="0" label="Icon 15 Status" description="Registered+ this will only show the menu item to registered users and above.">
+	  			<option value="0">Disable</option>
+	  			<option value="1">Enable</option>
+	  			<option value="2">Only Registered+</option>
+	  		</field>
+	  		<field name="icon15_img" type="imagelist" directory="/media/mod_ninja_simple_icon_menu/images" default="image15.png" label="Icon 15 Image" description="choose the icon you want to use" />
+	  		<field name="icon15_target" type="list" default="_self" label="Icon 15 Target" description="Choose whether the icon click will open a new window/tab or not">
+	  			<option value="_self">_self (same window)</option>
+	  			<option value="_blank">_blank (new window)</option>
+	  		</field>
+	  		<field name="icon15_title" type="text" label="Icon 15 Title" description="type in the title of your icon" />
+	  		<field name="icon15_link" type="text" label="Icon 15 URL" description="Enter the URL for this menu item. (Eg. http://ninjaforge.com )" />
+	  		<field name="icon15_alt" type="text" label="Icon 15 Alt" description="The Alt text for the icon image. This is important for accessibility and HTML validation." />
+	  		
+	  		
+	      <field name="spacer16" hr="true" type="spacer" default="" label="Icon 16 Params" description=""></field>
+	  		<field name="icon16_status" type="radio" default="0" label="Icon 16 Status" description="Registered+ this will only show the menu item to registered users and above.">
+	  			<option value="0">Disable</option>
+	  			<option value="1">Enable</option>
+	  			<option value="2">Only Registered+</option>
+	  		</field>
+	  		<field name="icon16_img" type="imagelist" directory="/media/mod_ninja_simple_icon_menu/images" default="image16.png" label="Icon 16 Image" description="choose the icon you want to use" />
+	  		<field name="icon16_target" type="list" default="_self" label="Icon 16 Target" description="Choose whether the icon click will open a new window/tab or not">
+	  			<option value="_self">_self (same window)</option>
+	  			<option value="_blank">_blank (new window)</option>
+	  		</field>
+	  		<field name="icon16_title" type="text" label="Icon 16 Title" description="type in the title of your icon" />
+	  		<field name="icon16_link" type="text" label="Icon 16 URL" description="Enter the URL for this menu item. (Eg. http://ninjaforge.com )" />
+	  		<field name="icon16_alt" type="text" label="Icon 16 Alt" description="The Alt text for the icon image. This is important for accessibility and HTML validation." />
+	      
+	      
+	      <field name="spacer17" hr="true" type="spacer" default="" label="Icon 17 Params" description=""></field>
+	  		<field name="icon17_status" type="radio" default="0" label="Icon 17 Status" description="Registered+ this will only show the menu item to registered users and above.">
+	  			<option value="0">Disable</option>
+	  			<option value="1">Enable</option>
+	  			<option value="2">Only Registered+</option>
+	  		</field>
+	  		<field name="icon17_img" type="imagelist" directory="/media/mod_ninja_simple_icon_menu/images" default="image17.png" label="Icon 17 Image" description="choose the icon you want to use" />
+	  		<field name="icon17_target" type="list" default="_self" label="Icon 17 Target" description="Choose whether the icon click will open a new window/tab or not">
+	  			<option value="_self">_self (same window)</option>
+	  			<option value="_blank">_blank (new window)</option>
+	  		</field>
+	  		<field name="icon17_title" type="text" label="Icon 17 Title" description="type in the title of your icon" />
+	  		<field name="icon17_link" type="text" label="Icon 17 URL" description="Enter the URL for this menu item. (Eg. http://ninjaforge.com )" />
+	  		<field name="icon17_alt" type="text" label="Icon 17 Alt" description="The Alt text for the icon image. This is important for accessibility and HTML validation." />
+	      
+	      
+	      <field name="spacer18" hr="true" type="spacer" default="" label="Icon 18 Params" description=""></field>
+	  		<field name="icon18_status" type="radio" default="0" label="Icon 18 Status" description="Registered+ this will only show the menu item to registered users and above.">
+	  			<option value="0">Disable</option>
+	  			<option value="1">Enable</option>
+	  			<option value="2">Only Registered+</option>
+	  		</field>
+	  		<field name="icon18_img" type="imagelist" directory="/media/mod_ninja_simple_icon_menu/images" default="image18.png" label="Icon 18 Image" description="choose the icon you want to use" />
+	  		<field name="icon18_target" type="list" default="_self" label="Icon 18 Target" description="Choose whether the icon click will open a new window/tab or not">
+	  			<option value="_self">_self (same window)</option>
+	  			<option value="_blank">_blank (new window)</option>
+	  		</field>
+	  		<field name="icon18_title" type="text" label="Icon 18 Title" description="type in the title of your icon" />
+	  		<field name="icon18_link" type="text" label="Icon 18 URL" description="Enter the URL for this menu item. (Eg. http://ninjaforge.com )" />
+	  		<field name="icon18_alt" type="text" label="Icon 18 Alt" description="The Alt text for the icon image. This is important for accessibility and HTML validation." />
+	      
+	      
+	      <field name="spacer19" hr="true" type="spacer" default="" label="Icon 19 Params" description=""></field>
+	  		<field name="icon19_status" type="radio" default="0" label="Icon 19 Status" description="Registered+ this will only show the menu item to registered users and above.">
+	  			<option value="0">Disable</option>
+	  			<option value="1">Enable</option>
+	  			<option value="2">Only Registered+</option>
+	  		</field>
+	  		<field name="icon19_img" type="imagelist" directory="/media/mod_ninja_simple_icon_menu/images" default="image19.png" label="Icon 19 Image" description="choose the icon you want to use" />
+	  		<field name="icon19_target" type="list" default="_self" label="Icon 19 Target" description="Choose whether the icon click will open a new window/tab or not">
+	  			<option value="_self">_self (same window)</option>
+	  			<option value="_blank">_blank (new window)</option>
+	  		</field>
+	  		<field name="icon19_title" type="text" label="Icon 19 Title" description="type in the title of your icon" />
+	  		<field name="icon19_link" type="text" label="Icon 19 URL" description="Enter the URL for this menu item. (Eg. http://ninjaforge.com )" />
+	  		<field name="icon19_alt" type="text" label="Icon 19 Alt" description="The Alt text for the icon image. This is important for accessibility and HTML validation." />
+	      
+	      
+	      <field name="spacer20" hr="true" type="spacer" default="" label="Icon 20 Params" description=""></field>
+	  		<field name="icon20_status" type="radio" default="0" label="Icon 20 Status" description="Registered+ this will only show the menu item to registered users and above.">
+	  			<option value="0">Disable</option>
+	  			<option value="1">Enable</option>
+	  			<option value="2">Only Registered+</option>
+	  		</field>
+	  		<field name="icon20_img" type="imagelist" directory="/media/mod_ninja_simple_icon_menu/images" default="image20.png" label="Icon 20 Image" description="choose the icon you want to use" />
+	  		<field name="icon20_target" type="list" default="_self" label="Icon 20 Target" description="Choose whether the icon click will open a new window/tab or not">
+	  			<option value="_self">_self (same window)</option>
+	  			<option value="_blank">_blank (new window)</option>
+	  		</field>
+	  		<field name="icon20_title" type="text" label="Icon 20 Title" description="type in the title of your icon" />
+	  		<field name="icon20_link" type="text" label="Icon 20 URL" description="Enter the URL for this menu item. (Eg. http://ninjaforge.com )" />
+	  		<field name="icon20_alt" type="text" label="Icon 20 Alt" description="The Alt text for the icon image. This is important for accessibility and HTML validation." />		
+	    	</fieldset>
+		</fields>
+	</config>
+</extension>

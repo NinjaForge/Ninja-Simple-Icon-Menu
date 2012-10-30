@@ -6,6 +6,10 @@
 * Release: 1.7.2
 
 * Changelog
+* 1.9.0 Date: Oct, 2012
+*   Added support for Joomla 3.0
+*   Removed support for Joomla 1.5
+*
 * 1.8.3 Date: Sept, 2011 State: Minor CSS fixes
 *	Fixed css link background styling
 
