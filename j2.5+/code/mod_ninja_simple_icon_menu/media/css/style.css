@@ -1,0 +1,37 @@
+/* Ninja Simple Icon Menu (c) Richie Mortimer, http://ninjaforge.com  richie@ninjaforge.com */
+
+.nsi-container {overflow:hidden; position:relative; padding:0}
+.nsi-container div {float:left; position:relative; left:50%; text-align:left;}
+.nsi-container ul {position:relative; padding:0; margin:0; list-style:none !important;}
+.nsi-container li {clear:left; float:left; margin:0; padding:10px 20px 0 0; text-align:center; cursor:pointer; list-style:none !important; background:transparent !important; border:none !important}
+.nsi-container span {font-weight:bold;}
+.nsi-container img {border:none;}
+.nsi-container a img,
+.nsi-container a:hover img {background:transparent !important; border:none}
+.nsi-container a,
+.nsi-container a:hover {height:100%; text-decoration:none; background:transparent !important; border:none !important}    
+
+/* Horizontal - icons above titles */
+.nsi-iconhoriz-icontop div{padding:0 15px 0 0; background-position:100% 100% !important;}
+    .nsi-iconhoriz-icontop ul {float:left; right:50%;}
+        .nsi-iconhoriz-icontop li {clear:none;}
+
+/* Horizontal - icons below titles */
+.nsi-iconhoriz-iconbottom div{padding:0 15px 0 0; background-position:100% 100% !important;}
+    .nsi-iconhoriz-iconbottom ul {float:left; right:50%;}
+        .nsi-iconhoriz-iconbottom li {clear:none;}
+
+/* Vertical - icons above titles */
+.nsi-iconvert a {left:0; bottom:0; width:100%; display:block}
+
+/* Vertical - icons to the left of titles */
+.nsi-iconvert-l div {padding:10px 0; left:0}
+    .nsi-iconvert-l li {text-align:left; width:100%; padding:0 0 10px 0}
+        .nsi-iconvert-l img {float:left}
+        .nsi-iconvert-l span {padding:0 0 0 10px; float:left}
+
+/* Vertical - icons to the right of titles */
+.nsi-iconvert-r div {padding:10px 0; left:0; float:right}
+    .nsi-iconvert-r li {text-align:right; width:100%; padding:0 0 10px 0}
+        .nsi-iconvert-r img {float:right}
+        .nsi-iconvert-r span {padding:0 10px 0 0; float:right}
