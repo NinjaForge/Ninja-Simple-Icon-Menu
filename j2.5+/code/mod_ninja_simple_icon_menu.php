@@ -93,7 +93,7 @@ defined('_JEXEC') or die('Direct Access to this location is not allowed.');
 
 // Lets include all the params
   $incCSS = $params->get( 'incCSS' );
-  $moduleclass_sfx = $params->get( 'moduleclass_sfx' );
+  $moduleclass_sfx = trim($params->get( 'moduleclass_sfx' ));
   $icon_orientation = $params->get( 'icon_orientation' );
   $icon_container_margin_top = $params->get( 'icon_container_margin_top' );
   $icon_titles = $params->get( 'icon_titles' );                             
@@ -101,6 +101,10 @@ defined('_JEXEC') or die('Direct Access to this location is not allowed.');
   $icon_title_fontsize = $params->get( 'icon_title_fontsize' );
   $icon_height = $params->get( 'icon_height' );
   $icon_width = $params->get( 'icon_width' );
+  
+// initialize the array for div classes
+$div_classes = array();
+if ($moduleclass_sfx) { $div_classes[] = $moduleclass_sfx; }
 
   
   // we are going to store some params in an array
@@ -208,9 +212,13 @@ defined('_JEXEC') or die('Direct Access to this location is not allowed.');
         
 				$document->addStyleDeclaration($headerStyle);
 			} // if ($mainStyleLoaded === false)
+			
+			// add main div classes for included CSS
+			$div_classes[] = "nsi-container";
+			$div_classes[] = "nsi-icon$orien";
 		}//if ($incCSS)
 ?>
-<div class="nsi-container nsi-icon<?php echo $orien; ?>">
+<div<?php if (count($div_classes)) { echo ' class="'.implode(' ',$div_classes).'"'; }?>>
    <div>
     <ul>                
        <?php /* loop through our menu items and display the ones we need to display */ 
@@ -225,7 +233,10 @@ defined('_JEXEC') or die('Direct Access to this location is not allowed.');
                   		<?php } ?>
                   		
                   		<?php if ($iconParams[$i][1] != "-1") { /* this needs to be improved */ ?>
-	                  		<img src="<?php echo $siteLoc.'/images/'.$iconParams[$i][1]; ?>" alt="<?php echo $iconParams[$i][4]; ?>" height="<?php echo $icon_height; ?>" width="<?php echo $icon_width; ?>" />
+	                  		<img src="<?php echo $siteLoc.'/images/'.$iconParams[$i][1]; ?>" alt="<?php echo $iconParams[$i][4]; ?>" <?php 
+	                  		    if ($icon_height) { echo "height=\"$icon_height\" "; }
+	                  		    if ($icon_width) { echo "width=\"$icon_width\" "; }
+	                  		    ?>/>
 	                  	<?php } ?>
 	                  	<?php if ($orien == 'horiz-icontop' || $orien == 'vert') : ?><br /><?php endif; ?>
 	                  	
