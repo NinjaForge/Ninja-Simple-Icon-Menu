@@ -6,6 +6,15 @@
 * Release: 1.7.2
 
 * Changelog
+* 1.9.1 Date: Mar, 2014
+*   Code clean up
+*   Removed white space between <li> sub-elements
+*   Detached in-module CSS class assignments if not included by user
+*   Removed HTML elements which assumed in-module CSS was included
+*   Corrected usage of moduleclass_sfx from module parameters (previously ignored)
+*   Added option for icons to auto-size if height/width is zero
+*   Changed icon_orientation detection to default to horiz-icontop
+*
 * 1.9.0 Date: Oct, 2012
 *   Added support for Joomla 3.0
 *   Removed support for Joomla 1.5
@@ -92,160 +101,149 @@
 defined('_JEXEC') or die('Direct Access to this location is not allowed.');
 
 // Lets include all the params
-  $incCSS = $params->get( 'incCSS' );
-  $moduleclass_sfx = trim($params->get( 'moduleclass_sfx' ));
-  $icon_orientation = $params->get( 'icon_orientation' );
-  $icon_container_margin_top = $params->get( 'icon_container_margin_top' );
-  $icon_titles = $params->get( 'icon_titles' );                             
-  $icon_title_color = $params->get( 'icon_title_color' );
-  $icon_title_fontsize = $params->get( 'icon_title_fontsize' );
-  $icon_height = $params->get( 'icon_height' );
-  $icon_width = $params->get( 'icon_width' );
+$incCSS = $params->get( 'incCSS' );
+$moduleclass_sfx = trim($params->get( 'moduleclass_sfx' ));
+$icon_orientation = $params->get( 'icon_orientation' );
+$icon_container_margin_top = $params->get( 'icon_container_margin_top' );
+$icon_titles = $params->get( 'icon_titles' );                             
+$icon_title_color = $params->get( 'icon_title_color' );
+$icon_title_fontsize = $params->get( 'icon_title_fontsize' );
+$icon_height = $params->get( 'icon_height' );
+$icon_width = $params->get( 'icon_width' );
   
 // initialize the array for div classes
 $div_classes = array();
 if ($moduleclass_sfx) { $div_classes[] = $moduleclass_sfx; }
 
   
-  // we are going to store some params in an array
-  // this will make it alot cleaner and easier to use later on
-  // The params in the array are = 0-icon_status 1-icon_img, 2-icon_title, 3-icon_link, 4-icon_alt
-   $iconParams = array (
-		array($params->get('icon1_status'),$params->get('icon1_img'),$params->get('icon1_title'),$params->get('icon1_link'),$params->get('icon1_alt'),$params->get('icon1_target')),
-		array($params->get('icon2_status'),$params->get('icon2_img'),$params->get('icon2_title'),$params->get('icon2_link'),$params->get('icon2_alt'),$params->get('icon2_target')),
-		array($params->get('icon3_status'),$params->get('icon3_img'),$params->get('icon3_title'),$params->get('icon3_link'),$params->get('icon3_alt'),$params->get('icon3_target')),
-		array($params->get('icon4_status'),$params->get('icon4_img'),$params->get('icon4_title'),$params->get('icon4_link'),$params->get('icon4_alt'),$params->get('icon4_target')),
-		array($params->get('icon5_status'),$params->get('icon5_img'),$params->get('icon5_title'),$params->get('icon5_link'),$params->get('icon5_alt'),$params->get('icon5_target')),
-		array($params->get('icon6_status'),$params->get('icon6_img'),$params->get('icon6_title'),$params->get('icon6_link'),$params->get('icon6_alt'),$params->get('icon6_target')),
-		array($params->get('icon7_status'),$params->get('icon7_img'),$params->get('icon7_title'),$params->get('icon7_link'),$params->get('icon7_alt'),$params->get('icon7_target')),
-		array($params->get('icon8_status'),$params->get('icon8_img'),$params->get('icon8_title'),$params->get('icon8_link'),$params->get('icon8_alt'),$params->get('icon8_target')),
-		array($params->get('icon9_status'),$params->get('icon9_img'),$params->get('icon9_title'),$params->get('icon9_link'),$params->get('icon9_alt'),$params->get('icon9_target')),
-		array($params->get('icon10_status'),$params->get('icon10_img'),$params->get('icon10_title'),$params->get('icon10_link'),$params->get('icon10_alt'),$params->get('icon10_target')),
-		array($params->get('icon11_status'),$params->get('icon11_img'),$params->get('icon11_title'),$params->get('icon11_link'),$params->get('icon11_alt'),$params->get('icon11_target')),
-		array($params->get('icon12_status'),$params->get('icon12_img'),$params->get('icon12_title'),$params->get('icon12_link'),$params->get('icon12_alt'),$params->get('icon12_target')),
-		array($params->get('icon13_status'),$params->get('icon13_img'),$params->get('icon13_title'),$params->get('icon13_link'),$params->get('icon13_alt'),$params->get('icon13_target')),
-		array($params->get('icon14_status'),$params->get('icon14_img'),$params->get('icon14_title'),$params->get('icon14_link'),$params->get('icon14_alt'),$params->get('icon14_target')),
-		array($params->get('icon15_status'),$params->get('icon15_img'),$params->get('icon15_title'),$params->get('icon15_link'),$params->get('icon15_alt'),$params->get('icon15_target')),
-		array($params->get('icon16_status'),$params->get('icon16_img'),$params->get('icon16_title'),$params->get('icon16_link'),$params->get('icon16_alt'),$params->get('icon16_target')),
-		array($params->get('icon17_status'),$params->get('icon17_img'),$params->get('icon17_title'),$params->get('icon17_link'),$params->get('icon17_alt'),$params->get('icon17_target')),
-		array($params->get('icon18_status'),$params->get('icon18_img'),$params->get('icon18_title'),$params->get('icon18_link'),$params->get('icon18_alt'),$params->get('icon18_target')),
-		array($params->get('icon19_status'),$params->get('icon19_img'),$params->get('icon19_title'),$params->get('icon19_link'),$params->get('icon19_alt'),$params->get('icon19_target')),
-		array($params->get('icon20_status'),$params->get('icon20_img'),$params->get('icon20_title'),$params->get('icon20_link'),$params->get('icon20_alt'),$params->get('icon20_target'))
-	);
+// we are going to store some params in an array
+// this will make it alot cleaner and easier to use later on
+// The params in the array are = 0-icon_status 1-icon_img, 2-icon_title, 3-icon_link, 4-icon_alt, 5-icon_target
+$iconParams = array();
+for ($i=1; $i<21; $i++){
+  $thisarray = array();
+  foreach (array('status','img','title','link','alt','target') as $v) {
+    $thisarray[] = $params->get("icon{$i}_{$v}");
+  }
+  $iconParams[] = $thisarray;
+}
 
 // set up all the globals
-  $user 	= JFactory::getUser();
-  $acl 		= JFactory::getACL();
-  $document = JFactory::getDocument();
-  
-  $headerStyle 	= '';
-  $siteLoc 		= JURI::base().'media/mod_ninja_simple_icon_menu';
-  
-  // Create a variable to store the visible status of the menu
-  // Set the variable to 0 to mean the menu is not displayed. Then modifiy it if it is to be displayed.
-  $menuVisibleCount = 0;
-  // Loop through the list
-  // We say less than 8 and start at 0 because that is how php handles arrays, the first element has an index of 0
-  // We have 10 elements but one is in index 0 which means we stop the loop when the index is above 9.
-  // Also this menu visible count variable is used to tell us how many items we have so we can size the invisible box accordingly
-  for ($i=0; $i<20; $i++){
-      // Menu params[i][0] = the first element (menu status) in the array record which matches the index i
-      // Check that our status == 1 (visible) or == 2 (registered only) and we are not a guest. || = OR , && = AND
-      // Also, for all the ones that are status 2 and we are registered, change them to status 1
-      // This will save us having to do multiple tests later on. We can just test for  $menu_params[i][0] == 1 only
-		// Following line changed by Juergen Buchberger
-		if (($iconParams[$i][0] == 1) || (($iconParams[$i][0] == 2)&&($user->get('id')))){
-			$menuVisibleCount ++;
-			$iconParams[$i][0] = 1;
-			}  
-	}  
-  
-  switch ($icon_orientation) {
-  	case '0':
-     	$orien = 'horiz-icontop';
-	 	$menuwidth = $icon_width + $icon_width; // insertion of menuwidth to avoid error notice by Juergen Buchberger
-	 	break;
-	case '1':
-		$orien = 'horiz-iconbottom';
-		$menuwidth = $icon_width + $icon_width; // insertion of menuwidth to avoid error notice by Juergen Buchberger
-		break;
-	case '2':
-	  	$orien = 'vert';
-	  	break;
-	case '3':
-		 $orien = 'vert-l';
-		 break;
-	case '4':
-		 $orien = 'vert-r';
-		 break;
-	}  
-	
-	//Check if we have already loaded our css or not, and load it if needed and requested
-		$mainStyleLoaded = false;
-		
-		if ($incCSS)	{
-			foreach($document->_styleSheets as $key => $styleSheet) {
-				if(stristr($key, 'nsimple_icons.css') !== false) 	{
-					$mainStyleLoaded = true;				
-				}
-			}
+$user 	= JFactory::getUser();
+$acl 		= JFactory::getACL();
+$document = JFactory::getDocument();
 
-		//link in the CSS if it hasn't been loaded yet
-			if ($mainStyleLoaded === false)	{			
-				$cssFile = $siteLoc.'/css/style.css';
-				$document->addStyleSheet($cssFile);	
-        
-        		
-				$headerStyle .= '.nsi-container div {margin-top: '.$icon_container_margin_top.'}';
-				
-				if ($icon_titles == 1) {
-				    if (!empty($icon_title_color)) {
-				        $headerStyle .='.nsi-container span {color:'.$icon_title_color.'}';
-				    }
-				    if (!empty($icon_title_fontsize)) {
-				        $headerStyle .='.nsi-container span {font-size:'.$icon_title_fontsize.'}';
-				    }
-				}
-      	if ($orien == 'vert-l' || $orien == 'vert-r') {
-            $headerStyle .='.nsi-icon'.$orien.' span {line-height:'.$icon_height.'px}';
-        }
-        
-				$document->addStyleDeclaration($headerStyle);
-			} // if ($mainStyleLoaded === false)
-			
-			// add main div classes for included CSS
-			$div_classes[] = "nsi-container";
-			$div_classes[] = "nsi-icon$orien";
-		}//if ($incCSS)
+$headerStyle 	= '';
+$siteLoc 		= JURI::base().'media/mod_ninja_simple_icon_menu';
+
+// Create a variable to store the visible status of the menu
+// Set the variable to 0 to mean the menu is not displayed. Then modifiy it if it is to be displayed.
+$menuVisibleCount = 0;
+
+// Loop through the list
+// We say less than 8 and start at 0 because that is how php handles arrays, the first element has an index of 0
+// We have 20 elements but one is in index 0 which means we stop the loop when the index is above 19.
+// Also this menu visible count variable is used to tell us how many items we have so we can size the invisible box accordingly
+for ($i=0; $i<20; $i++){
+  // Menu params[i][0] = the first element (menu status) in the array record which matches the index i
+  // Check that our status == 1 (visible) or == 2 (registered only) and we are not a guest. || = OR , && = AND
+  // Also, for all the ones that are status 2 and we are registered, change them to status 1
+  // This will save us having to do multiple tests later on. We can just test for  $menu_params[i][0] == 1 only
+	// Following line changed by Juergen Buchberger
+	if (($iconParams[$i][0] == 1) || (($iconParams[$i][0] == 2)&&($user->get('id')))){
+		$menuVisibleCount ++;
+		$iconParams[$i][0] = 1;
+	}  
+}  
+  
+switch ($icon_orientation) {
+  case '1':
+  	$orien = 'horiz-iconbottom';
+  	$menuwidth = $icon_width + $icon_width; // insertion of menuwidth to avoid error notice by Juergen Buchberger
+  	break;
+  case '2':
+    	$orien = 'vert';
+    	break;
+  case '3':
+  	 $orien = 'vert-l';
+  	 break;
+  case '4':
+  	 $orien = 'vert-r';
+  	 break;
+  default:
+   	$orien = 'horiz-icontop';
+   	$menuwidth = $icon_width + $icon_width; // insertion of menuwidth to avoid error notice by Juergen Buchberger
+   	break;
+}  
+
+//Check if we have already loaded our css or not, and load it if needed and requested
+$mainStyleLoaded = false;
+		
+if ($incCSS)	{
+	foreach($document->_styleSheets as $key => $styleSheet) {
+		if(stristr($key, 'nsimple_icons.css') !== false) 	{
+			$mainStyleLoaded = true;				
+		}
+	}
+
+  //link in the CSS if it hasn't been loaded yet
+	if ($mainStyleLoaded === false)	{			
+		$cssFile = $siteLoc.'/css/style.css';
+		$document->addStyleSheet($cssFile);	
+    
+    // add the header style
+		$headerStyle .= '.nsi-container div {margin-top: '.$icon_container_margin_top.'}';
+		
+		if ($icon_titles == 1) {
+	    if (!empty($icon_title_color)) {
+        $headerStyle .='.nsi-container span {color:'.$icon_title_color.'}';
+	    }
+	    if (!empty($icon_title_fontsize)) {
+        $headerStyle .='.nsi-container span {font-size:'.$icon_title_fontsize.'}';
+	    }
+		}
+  	if ($orien == 'vert-l' || $orien == 'vert-r') {
+      $headerStyle .='.nsi-icon'.$orien.' span {line-height:'.$icon_height.'px}';
+    }
+    
+		$document->addStyleDeclaration($headerStyle);
+	} // if ($mainStyleLoaded === false)
+	
+	// add main div classes for included CSS
+	$div_classes[] = "nsi-container";
+	$div_classes[] = "nsi-icon$orien";
+
+}//if ($incCSS)
 ?>
 <div<?php if (count($div_classes)) { echo ' class="'.implode(' ',$div_classes).'"'; }?>>
-   <div>
-    <ul>                
-       <?php /* loop through our menu items and display the ones we need to display */ 
-          for ($i=0; $i<20; $i++){
-              // icon params[i][0] = the first element (menu status) in the array record which matches the index i
-              // Check that our status == 1 (visible) 
-              if ($iconParams[$i][0] == 1) { ?>
-               <li>
-                  <a href="<?php echo $iconParams[$i][3]; ?>" target="<?php echo $iconParams[$i][5]; ?>" title="<?php /* The icon alt text is used here */ echo $iconParams[$i][4]; ?>">
-                  		<?php if ($icon_titles == 1 && $orien == 'horiz-iconbottom') { ?>
-                  		<span><?php echo $iconParams[$i][2] ?></span><br />
-                  		<?php } ?>
-                  		
-                  		<?php if ($iconParams[$i][1] != "-1") { /* this needs to be improved */ ?>
-	                  		<img src="<?php echo $siteLoc.'/images/'.$iconParams[$i][1]; ?>" alt="<?php echo $iconParams[$i][4]; ?>" <?php 
-	                  		    if ($icon_height) { echo "height=\"$icon_height\" "; }
-	                  		    if ($icon_width) { echo "width=\"$icon_width\" "; }
-	                  		    ?>/>
-	                  	<?php } ?>
-	                  	<?php if ($orien == 'horiz-icontop' || $orien == 'vert') : ?><br /><?php endif; ?>
-	                  	
-	                  	<?php if ($icon_titles == 1 && $iconParams[$i][2] != '' && ($orien == 'horiz-icontop' || $orien =='vert' || $orien == 'vert-l' || $orien == 'vert-r')) { ?>
-	                  	<span><?php echo $iconParams[$i][2] ?></span>
-                   		<?php } ?>
-                  </a>
-                </li>
-         <?php }} ?>
-    </ul>
+  <div>
+    <ul><?php 
+      /* loop through our menu items and display the ones we need to display */ 
+      for ($i=0; $i<20; $i++){
+        // icon params[i][0] = the first element (menu status) in the array record which matches the index i
+        // Check that our status == 1 (visible) 
+        if ($iconParams[$i][0] == 1) { 
+          // build the menu item
+          // built using individual variables to remove whitespace between the elements
+          $open_a = "<a href=\"{$iconParams[$i][3]}\" target=\"{$iconParams[$i][5]}\" title=\"{$iconParams[$i][4]}\">";
+          $pre_text = ($icon_titles == 1 && $orient == 'horiz-iconbottom') ?
+                      "<span>{$iconParams[$i][2]}</span>" . ($incCSS ? "<br />" : '') :
+                      '';
+          $img = '';
+          if ($iconParams[$i][1] != "-1") {
+            $img = "<img src=\"{$siteLoc}/images/{$iconParams[$i][1]}\" alt=\"{$iconParams[$i][4]}\" ";
+            if ($icon_height) { $img .= "height=\"$icon_height\" "; }
+            if ($icon_width) { $img .= "width=\"$icon_width\" "; }
+            $img .= "/>";
+          }
+          $post_br = ($incCSS && ($orien == 'horiz-icontop' || $orien == 'vert')) ? "<br />" : '';
+          $post_text = '';
+          if ($icon_titles == 1 && $iconParams[$i][2] != '' && ($orien == 'horiz-icontop' || $orien =='vert' || $orien == 'vert-l' || $orien == 'vert-r')) {
+            $post_text = "<span>{$iconParams[$i][2]}</span>";
+          }
+          echo "<li>{$open_a}{$pre_text}{$img}{$post_br}{$post_text}</a></li>";
+        }
+      } 
+    ?></ul>
   </div>
 </div>
